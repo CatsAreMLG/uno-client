@@ -2,8 +2,54 @@
   width: 100%;
   height: 100vh;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  border: 5px solid black;
+  padding: 1rem;
+}
+
+.R {
+  border-color: red;
+}
+
+.G {
+  border-color: green;
+}
+
+.B {
+  border-color: blue;
+}
+
+.Y {
+  border-color: yellow;
+}
+
+.hand {
+  display: flex;
+  width: 100%;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.card {
+  width: 5%;
+  height: auto;
+  object-fit: cover;
+}
+
+.decksContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.deck {
 }
