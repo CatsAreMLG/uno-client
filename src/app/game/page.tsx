@@ -339,7 +339,7 @@ export default function Game() {
           ></Image>
         )}
         <Image
-          src={`/uno/back.png`}
+          src={`/uno/Back.png`}
           className={styles.card}
           priority
           width={100}
