@@ -146,6 +146,7 @@ a {
   display: flex;
   flex-direction: row;
   align-items: center;
+  padding: 0 0.5rem;
 }
 
 .player1Deck > img {
@@ -163,6 +164,7 @@ a {
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
+  padding: 0 0.5rem;
 }
 
 .player2Deck > img {

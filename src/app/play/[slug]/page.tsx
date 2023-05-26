@@ -608,8 +608,8 @@ export default function Game({
     let cardWidth = 96
     let totalCardWidth = cardWidth * handLength
     let overlap = 0
-    if (totalCardWidth > windowSize[0] - 50) {
-      overlap = (totalCardWidth - (windowSize[0] - 50)) / handLength
+    if (totalCardWidth > windowSize[0] - 20) {
+      overlap = (totalCardWidth - (windowSize[0] - 20)) / handLength
       return overlap
     }
     return 0
@@ -694,9 +694,11 @@ export default function Game({
                               key={i}
                               className="Card"
                               style={{
-                                marginLeft: `-${calculateHandWidth(
-                                  players[0].length
-                                )}px`,
+                                marginLeft: `-${
+                                  i === 0
+                                    ? 8
+                                    : 0 + calculateHandWidth(players[1].length)
+                                }px`,
                               }}
                               onClick={() => onCardPlayedHandler(item, 0)}
                               src={`/uno/Back.png`}
@@ -758,9 +760,9 @@ export default function Game({
                               key={i}
                               className="Card"
                               style={{
-                                marginRight: `-${calculateHandWidth(
-                                  players[0].length
-                                )}px`,
+                                marginRight: `-${
+                                  8 + calculateHandWidth(players[0].length)
+                                }px`,
                               }}
                               onClick={() => onCardPlayedHandler(item, 0)}
                               src={`/uno/${item}.png`}
@@ -853,9 +855,9 @@ export default function Game({
                               key={i}
                               className="Card"
                               style={{
-                                marginRight: `-${calculateHandWidth(
-                                  players[0].length
-                                )}px`,
+                                marginRight: `-${
+                                  8 + calculateHandWidth(players[0].length)
+                                }px`,
                               }}
                               onClick={() => onCardPlayedHandler(item, 1)}
                               src={`/uno/Back.png`}
@@ -916,9 +918,9 @@ export default function Game({
                             key={i}
                             className="Card"
                             style={{
-                              marginLeft: `-${calculateHandWidth(
-                                players[0].length
-                              )}px`,
+                              marginLeft: `-${
+                                8 + calculateHandWidth(players[1].length)
+                              }px`,
                             }}
                             onClick={() => onCardPlayedHandler(item, 1)}
                             src={`/uno/${item}.png`}
