@@ -695,9 +695,10 @@ export default function Game({
                               className="Card"
                               style={{
                                 marginLeft: `-${
-                                  i === 0
+                                  calculateHandWidth(players[1].length) + i ===
+                                  0
                                     ? 8
-                                    : 0 + calculateHandWidth(players[1].length)
+                                    : 0
                                 }px`,
                               }}
                               onClick={() => onCardPlayedHandler(item, 0)}
@@ -761,7 +762,10 @@ export default function Game({
                               className="Card"
                               style={{
                                 marginRight: `-${
-                                  8 + calculateHandWidth(players[0].length)
+                                  calculateHandWidth(players[0].length) + i ===
+                                  0
+                                    ? 8
+                                    : 0
                                 }px`,
                               }}
                               onClick={() => onCardPlayedHandler(item, 0)}
@@ -856,7 +860,10 @@ export default function Game({
                               className="Card"
                               style={{
                                 marginRight: `-${
-                                  8 + calculateHandWidth(players[0].length)
+                                  calculateHandWidth(players[0].length) + i ===
+                                  0
+                                    ? 8
+                                    : 0
                                 }px`,
                               }}
                               onClick={() => onCardPlayedHandler(item, 1)}
@@ -919,7 +926,9 @@ export default function Game({
                             className="Card"
                             style={{
                               marginLeft: `-${
-                                8 + calculateHandWidth(players[1].length)
+                                calculateHandWidth(players[1].length) + i === 0
+                                  ? 8
+                                  : 0
                               }px`,
                             }}
                             onClick={() => onCardPlayedHandler(item, 1)}
