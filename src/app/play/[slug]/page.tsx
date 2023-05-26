@@ -694,12 +694,9 @@ export default function Game({
                               key={i}
                               className="Card"
                               style={{
-                                marginLeft: `-${
-                                  calculateHandWidth(players[1].length) + i ===
-                                  0
-                                    ? 8
-                                    : 0
-                                }px`,
+                                marginLeft: `-${calculateHandWidth(
+                                  players[1].length
+                                )}px`,
                               }}
                               onClick={() => onCardPlayedHandler(item, 0)}
                               src={`/uno/Back.png`}
@@ -761,12 +758,9 @@ export default function Game({
                               key={i}
                               className="Card"
                               style={{
-                                marginRight: `-${
-                                  calculateHandWidth(players[0].length) + i ===
-                                  0
-                                    ? 8
-                                    : 0
-                                }px`,
+                                marginRight: `-${calculateHandWidth(
+                                  players[0].length
+                                )}px`,
                               }}
                               onClick={() => onCardPlayedHandler(item, 0)}
                               src={`/uno/${item}.png`}
@@ -859,12 +853,9 @@ export default function Game({
                               key={i}
                               className="Card"
                               style={{
-                                marginRight: `-${
-                                  calculateHandWidth(players[0].length) + i ===
-                                  0
-                                    ? 8
-                                    : 0
-                                }px`,
+                                marginRight: `-${calculateHandWidth(
+                                  players[0].length
+                                )}px`,
                               }}
                               onClick={() => onCardPlayedHandler(item, 1)}
                               src={`/uno/Back.png`}
@@ -925,11 +916,9 @@ export default function Game({
                             key={i}
                             className="Card"
                             style={{
-                              marginLeft: `-${
-                                calculateHandWidth(players[1].length) + i === 0
-                                  ? 8
-                                  : 0
-                              }px`,
+                              marginLeft: `-${calculateHandWidth(
+                                players[1].length
+                              )}px`,
                             }}
                             onClick={() => onCardPlayedHandler(item, 1)}
                             src={`/uno/${item}.png`}
