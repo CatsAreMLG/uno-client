@@ -36,3 +36,5 @@ const onDrawCardHandler = (
   }
   setDrawButton(0)
 }
+
+export default onDrawCardHandler
