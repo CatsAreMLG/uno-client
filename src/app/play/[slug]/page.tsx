@@ -30,7 +30,7 @@ const gameOverSound = "/uno/sounds/game-over-sound.mp3"
 let socket: io.Socket
 let connectionOptions: Partial<io.ManagerOptions & io.SocketOptions>
 
-const ENDPOINT: string = process.env.SERVER || "http://localhost:5000"
+const ENDPOINT: string = process.env.SERVER || "https://uno-server.shrimp.cx/"
 
 export default function Game({
   params: { slug },
