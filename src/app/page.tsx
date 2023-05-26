@@ -27,7 +27,7 @@ export default function Lobby() {
               <div className="game-button green">JOIN GAME</div>
             </Link>
           </div>
-          <h1>OR</h1>
+          <h1 className="or">OR</h1>
           <div className="homepage-create">
             <Link href={`/play/${randomCodeGenerator(5)}`}>
               <div className="game-button orange">CREATE GAME</div>

@@ -8,6 +8,7 @@ a {
 
 /* Homepage */
 .Homepage {
+  width: 100%;
   background-image: url("/uno/Landing-Page.gif");
   background-size: cover;
   background-position: center;
@@ -18,13 +19,26 @@ a {
 .homepage-menu {
   width: 100%;
   position: relative;
-  top: 120px;
 }
 
 .homepage-form {
   display: flex;
   justify-content: center;
   margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+  .homepage-form {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .homepage-menu {
+    top: 120px;
+  }
 }
 
 .homepage-form > h1 {
@@ -35,6 +49,7 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .homepage-create {
@@ -55,8 +70,10 @@ a {
   justify-content: center;
 }
 
-.logo > img {
+.logoImage {
   object-fit: contain;
+  width: 100%;
+  height: 100%;
 }
 
 /* Game.js parent div */
@@ -69,23 +86,28 @@ a {
 /* Game.js Background */
 .backgroundColorR {
   background-image: url("/uno/backgrounds/bgR.png");
+  background-position: center;
 }
 
 .backgroundColorG {
   background-image: url("/uno/backgrounds/bgG.png");
+  background-position: center;
 }
 
 .backgroundColorB {
   background-image: url("/uno/backgrounds/bgB.png");
+  background-position: center;
 }
 
 .backgroundColorY {
   background-image: url("/uno/backgrounds/bgY.png");
+  background-position: center;
 }
 
 /* UNO Cards */
 .Card {
   width: 6rem;
+  height: auto;
   margin: 2px;
   cursor: pointer;
 }
@@ -118,6 +140,9 @@ a {
 
 /* Player Decks */
 .player1Deck {
+  width: 100%;
+  /* min-height: 300px; */
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -133,6 +158,8 @@ a {
 }
 
 .player2Deck {
+  width: 100%;
+  /* min-height: 300px; */
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
@@ -164,6 +191,11 @@ a {
 }
 
 /* Game Buttons */
+
+.sounds-container {
+  display: flex;
+}
+
 .game-button {
   position: relative;
   top: 0;
@@ -194,6 +226,37 @@ a {
   box-shadow: 0 6px 0 #266b91, 0 8px 1px 1px rgba(0, 0, 0, 0.3),
     0 10px 0 5px #12517d, 0 12px 0 5px #1a6b9a, 0 15px 0 5px #0c405e,
     0 15px 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .game-button {
+    width: 5rem;
+    padding: 0.5rem;
+  }
+
+  .topInfo {
+    padding: 0 1rem;
+  }
+
+  .topInfo > h1 {
+    display: none;
+  }
+
+  .logoImage {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 350px) {
+  .topInfo {
+    justify-content: center;
+  }
+  .logoImage {
+    display: none;
+    width: 0%;
+    height: 0%;
+  }
 }
 
 .game-button:hover {
@@ -358,10 +421,11 @@ a {
 
 /* Chat Box */
 .chat-box {
+  width: 100%;
   position: absolute;
   bottom: 0px;
   background: white;
-  width: 355px;
+  max-width: 355px;
   border-radius: 5px 5px 0px 0px;
   z-index: 100;
 }
@@ -373,13 +437,13 @@ a {
 }
 .chat-head {
   width: inherit;
-  height: 45px;
+  /* height: 45px; */
   background: #2c3e50;
   border-radius: 5px 5px 0px 0px;
 }
 .chat-head h2 {
+  margin: 0.5rem;
   color: white;
-  padding-top: 5px;
   display: inline-block;
 }
 .chat-head span {
@@ -396,7 +460,7 @@ a {
   margin-bottom: 45px;
 }
 .chat-text {
-  position: fixed;
+  position: absolute;
   bottom: 0px;
   height: 45px;
   width: inherit;
@@ -416,6 +480,12 @@ a {
 .chat-text input:hover {
   border-color: royalblue;
 }
+.msg-insert {
+  display: flex;
+  flex-direction: column;
+  padding: 0px 0.25rem;
+}
+
 .msg-send {
   background: #406a4b;
 }
@@ -424,35 +494,24 @@ a {
 }
 .msg-send,
 .msg-receive {
-  width: 285px;
-  height: 35px;
-  padding: 5px 5px 5px 10px;
-  margin: 5px auto;
+  /* height: 35px; */
+  padding: 0.25rem 0.5rem;
+  margin-top: 0.25rem;
   border-radius: 3px;
   line-height: 30px;
   position: relative;
   color: white;
 }
-.msg-receive:before {
-  content: "";
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  border: 15px solid;
-  border-color: transparent #595080 transparent transparent;
-  left: -29px;
-  top: 7px;
+.msg-send {
+  align-self: flex-end;
 }
-.msg-send:after {
-  content: "";
-  width: 0px;
-  height: 0px;
-  position: absolute;
-  border: 15px solid;
-  border-color: transparent transparent transparent #406a4b;
-  right: -29px;
-  top: 7px;
+.msg-insert > div:last-child {
+  margin-bottom: 0.25rem;
 }
+.msg-receive {
+  align-self: flex-start;
+}
+
 .msg-receive:hover,
 .msg-send:hover {
   opacity: 0.9;

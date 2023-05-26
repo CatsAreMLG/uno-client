@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import * as io from "socket.io-client"
 import { useSound } from "use-sound"
 import {
@@ -38,12 +38,28 @@ export default function Game({
   params: { slug: string }
 }) {
   //initialize socket state
+  const [windowSize, setWindowSize] = useState([
+    window.innerWidth,
+    window.innerHeight,
+  ])
   const [room, setRoom] = useState(slug)
   const [roomFull, setRoomFull] = useState(false)
   const [users, setUsers] = useState([] as any[])
   const [currentUser, setCurrentUser] = useState("")
   const [message, setMessage] = useState("")
   const [messages, setMessages] = useState([] as any[])
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowSize([window.innerWidth, window.innerHeight])
+    }
+
+    window.addEventListener("resize", handleWindowResize)
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize)
+    }
+  }, [])
 
   useEffect(() => {
     connectionOptions = {
@@ -588,6 +604,17 @@ export default function Game({
     }
   }
 
+  const calculateHandWidth = (handLength: number) => {
+    let cardWidth = 96
+    let totalCardWidth = cardWidth * handLength
+    let overlap = 0
+    if (totalCardWidth > windowSize[0] - 50) {
+      overlap = (totalCardWidth - (windowSize[0] - 50)) / handLength
+      return overlap
+    }
+    return 0
+  }
+
   return (
     <div className={`Game backgroundColorR backgroundColor${currentColor}`}>
       {!roomFull ? (
@@ -596,21 +623,22 @@ export default function Game({
             <div className="logo">
               <Image
                 src={"/uno/logo.png"}
+                className="logoImage"
                 width="200"
                 height="200"
                 alt="logo"
               />
             </div>
             <h1>Game Code: {room}</h1>
-            <span>
+            <span className="sounds-container">
               <button
                 className="game-button green"
                 onClick={() => setSoundMuted(!isSoundMuted)}
               >
                 {isSoundMuted ? (
-                  <span className="material-icons">volume_off</span>
+                  <span className="material-icons">Unmute Sounds</span>
                 ) : (
-                  <span className="material-icons">volume_up</span>
+                  <span className="material-icons">Mute Sounds</span>
                 )}
               </button>
               <button
@@ -622,9 +650,9 @@ export default function Game({
                 }}
               >
                 {isMusicMuted ? (
-                  <span className="material-icons">music_off</span>
+                  <span className="material-icons">Unmute music</span>
                 ) : (
-                  <span className="material-icons">music_note</span>
+                  <span className="material-icons">Mute Music</span>
                 )}
               </button>
             </span>
@@ -660,12 +688,16 @@ export default function Game({
                         className="player2Deck"
                         style={{ pointerEvents: "none" }}
                       >
-                        <p className="playerDeckText">Player 2</p>
                         {players[1] &&
                           players[1].map((item, i) => (
                             <Image
                               key={i}
                               className="Card"
+                              style={{
+                                marginLeft: `-${calculateHandWidth(
+                                  players[0].length
+                                )}px`,
+                              }}
                               onClick={() => onCardPlayedHandler(item, 0)}
                               src={`/uno/Back.png`}
                               width="220"
@@ -720,12 +752,16 @@ export default function Game({
                             turnPlayer % players.length !== 0 ? "none" : "auto",
                         }}
                       >
-                        <p className="playerDeckText">Player 1</p>
                         {players[0] &&
                           players[0].map((item, i) => (
                             <Image
                               key={i}
                               className="Card"
+                              style={{
+                                marginRight: `-${calculateHandWidth(
+                                  players[0].length
+                                )}px`,
+                              }}
                               onClick={() => onCardPlayedHandler(item, 0)}
                               src={`/uno/${item}.png`}
                               width="220"
@@ -811,12 +847,16 @@ export default function Game({
                         className="player1Deck"
                         style={{ pointerEvents: "none" }}
                       >
-                        <p className="playerDeckText">Player 1</p>
                         {players[0] &&
                           players[0].map((item, i) => (
                             <Image
                               key={i}
                               className="Card"
+                              style={{
+                                marginRight: `-${calculateHandWidth(
+                                  players[0].length
+                                )}px`,
+                              }}
                               onClick={() => onCardPlayedHandler(item, 1)}
                               src={`/uno/Back.png`}
                               width="220"
@@ -871,11 +911,15 @@ export default function Game({
                             turnPlayer % players.length === 0 ? "none" : "auto",
                         }}
                       >
-                        <p className="playerDeckText">Player 2</p>
                         {players[1].map((item, i) => (
                           <Image
                             key={i}
                             className="Card"
+                            style={{
+                              marginLeft: `-${calculateHandWidth(
+                                players[0].length
+                              )}px`,
+                            }}
                             onClick={() => onCardPlayedHandler(item, 1)}
                             src={`/uno/${item}.png`}
                             width="220"
